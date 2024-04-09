@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog logicalFilePath="db.changelog-1.0.xml" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="oleg.shpakov" id="book-schema">
+        <createTable tableName="book">
+            <column name="id" type="integer" autoIncrement="true">
+                <constraints primaryKey="true"></constraints>
+            </column>
+            <column name="author" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name= "title" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="year" type="integer" />
+            <column name="genre" type="varchar(127)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="ownerid" type="integer">
+            </column>
+            <column name="deadline" type="timestamp">
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>
