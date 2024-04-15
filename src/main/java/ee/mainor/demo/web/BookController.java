@@ -46,4 +46,9 @@ public class BookController {
         return bookService.giveToUser(id ,request);
     }
 
+    @PostMapping("{id}/return")
+    public BookDto returnToLibrary(@PathVariable Integer id) {
+        return bookService.returnToLibrary(id);
+    }
+
 }

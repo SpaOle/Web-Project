@@ -69,4 +69,11 @@ public class BookService {
         Book book = requireBook(id);
         bookRepository.deleteById(id);
     }
+
+    public BookDto returnToLibrary(Integer id) {
+        Book book = requireBook(id);
+        book.setOwnerid(null);
+        book.setDeadline(null);
+        return BookMapper.toDto(bookRepository.save(book));
+    }
 }
