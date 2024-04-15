@@ -26,14 +26,14 @@ public class BookService {
     private final UserRepository userRepository;
 
     public BookDto create(CreateBookRequest createBookRequest) {
-        Book Book = BookMapper.toEntity(createBookRequest);
-        return BookMapper.toDto(bookRepository.save(Book));
+        Book book = BookMapper.toEntity(createBookRequest);
+        return BookMapper.toDto(bookRepository.save(book));
     }
 
     public BookDto update(Integer id, BookDto bookDto) {
-        Book Book = BookMapper.updateEntity(bookDto, requireBook(id));
+        Book book = BookMapper.updateEntity(bookDto, requireBook(id));
 
-        return BookMapper.toDto(bookRepository.save(Book));
+        return BookMapper.toDto(bookRepository.save(book));
     }
 
     public List<BookDto> getAll() {
@@ -44,8 +44,8 @@ public class BookService {
     }
 
     public BookDto findById(Integer id) {
-        Book Book = requireBook(id);
-        return BookMapper.toDto(Book);
+        Book book = requireBook(id);
+        return BookMapper.toDto(book);
     }
 
     private Book requireBook(Integer id) {
@@ -63,5 +63,10 @@ public class BookService {
         book.setOwnerid(user.getId());
         book.setDeadline(Instant.now().plus(7, ChronoUnit.DAYS));
         return BookMapper.toDto(bookRepository.save(book));
+    }
+
+    public void deleteById(Integer id) {
+        Book book = requireBook(id);
+        bookRepository.deleteById(id);
     }
 }

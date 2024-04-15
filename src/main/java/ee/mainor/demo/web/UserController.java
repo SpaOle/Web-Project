@@ -30,9 +30,9 @@ public class UserController {
         return userService.getAll();
     }
 
-    @DeleteMapping
-    public UserDto delete() {
-        return null;
+    @DeleteMapping("{id}")
+    public void deleteById(@PathVariable Integer id) {
+        userService.deleteById(id);
     }
 
 }

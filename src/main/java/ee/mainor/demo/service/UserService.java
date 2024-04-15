@@ -39,4 +39,8 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not dount"));
     }
 
+    public void deleteById(Integer id) {
+        User user = requireUser(id);
+        userRepository.deleteById(id);
+    }
 }

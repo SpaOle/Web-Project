@@ -36,9 +36,9 @@ public class BookController {
         return bookService.getAll();
     }
 
-    @DeleteMapping
-    public BookDto delete() {
-        return null;
+    @DeleteMapping("{id}")
+    public void deleteById(@PathVariable Integer id) {
+        bookService.deleteById(id);
     }
 
     @PostMapping("{id}/give")
