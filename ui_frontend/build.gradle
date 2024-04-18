@@ -1,0 +1,17 @@
+plugins {
+    id 'org.siouan.frontend-jdk17' version '8.0.0'
+    //id "de.solugo.gradle.nodejs" version "0.6.2" apply true
+}
+
+group = 'ee.mainor'
+version = '0.0.1-SNAPSHOT'
+
+frontend {
+    nodeVersion = "20.12.2"
+    assembleScript = "run build"
+    cleanScript = "run clean"
+    checkScript = "run check"
+}
+/*nodejs {
+    version = "20.12.2" // default: "18.16.0"
+}*/
