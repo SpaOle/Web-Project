@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.4'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id "com.github.node-gradle.node" version "3.5.0"
 }
 
 group = 'ee.mainor'
@@ -36,3 +37,29 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+node {
+	download = false
+	// identify working directory in project
+	//workDir = file("${project.projectDir}/ui_frontend/node")
+	// NPM work directory
+	npmWorkDir = file("${project.projectDir}/ui_frontend")
+	// node modules directory
+	//nodeModulesDir = file("${project.projectDir}/src/main/frontend-ui/demoapp")
+}
+
+task appNpmInstall(type: NpmTask){
+	description = " read packge.json and install all jars"
+	workingDir = file("${project.projectDir}/ui_frontend")
+	args =["install"]
+}
+task appNpmBuild(type: NpmTask){
+	description = "Builds applciation for your frontend "
+	workingDir = file("${project.projectDir}/ui_frontend")
+	args =["run", "build"]
+}
+task copyToFrontend(type: Copy){
+	from "$projectDir/ui_frontend/out"
+	into "$buildDir/resources/main/static"
+}
+
